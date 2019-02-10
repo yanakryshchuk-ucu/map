@@ -4,6 +4,7 @@ import pandas
 from geopy.geocoders import GoogleV3
 from geopy.extra.rate_limiter import RateLimiter
 
+
 MAX_MOVIES = 30 # set max processed movies
 
 geolocator = GoogleV3(api_key="AIzaSyB20jGkWeUIOqGJ9isjrRuOJp2CoXGB5JU", timeout=5)
@@ -40,13 +41,18 @@ layer_fill_colors = {
 
 }
 
+
 def read_year():
+    """
+    Return year from user's input
+    """
     try:
         year = int(input("Enter year: "))
         return  year
     except:
         print("Invalid input! Enter year!")
         exit(-1)
+
 
 def get_movies_data(filename, testyear):
     """
@@ -77,6 +83,7 @@ def get_movies_data(filename, testyear):
                     hashes.add(hash)
     return lst
 
+
 def get_location(location_str):
     """
     Converts data with adress to coordinates and returns location
@@ -88,6 +95,7 @@ def get_location(location_str):
         location = geolocator.geocode(location_str)
         geocache[location_str] = location
         return  location
+
 
 def create_map_with_layers(movies):
     """
@@ -109,7 +117,6 @@ def create_map_with_layers(movies):
     return map
 
 
-
 def fill_colour_of_layer(layer_id):
     """
     Returns the colour which will fill the marker on defined layer
@@ -121,6 +128,9 @@ def fill_colour_of_layer(layer_id):
 
 
 def layer(moviename, layers):
+    """
+    Create layers
+    """
     first = moviename[0].upper()
     if 'A' <= first <= 'Z':
         id = first
@@ -134,13 +144,7 @@ def layer(moviename, layers):
         return  id, layer
 
 
-
-
-
-
-
 if __name__ == '__main__':
-
     year = read_year()
     movielist = get_movies_data('locations.csv', year)
     map = create_map_with_layers(movielist)
