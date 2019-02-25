@@ -7,7 +7,7 @@ from geopy.extra.rate_limiter import RateLimiter
 
 MAX_MOVIES = 30 # set max processed movies
 
-geolocator = GoogleV3(api_key="AIzaSyB20jGkWeUIOqGJ9isjrRuOJp2CoXGB5JU", timeout=5)
+geolocator = GoogleV3(api_key="...", timeout=5)
 #    geocode = RateLimiter(geolocator.geocode, min_delay_seconds=1)
 geocache = {}
 
